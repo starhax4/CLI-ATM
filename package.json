@@ -4,6 +4,7 @@
   "description": "a simple cli atm program",
   "main": "index.js",
   "type": "module",
+  "bin": "index.js",
   "dependencies": {
     "chalk": "^5.3.0",
     "inquirer": "^9.3.0"
