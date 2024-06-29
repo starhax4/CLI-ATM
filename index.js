@@ -53,9 +53,15 @@ async function withdraw() {
     let pin = await login();
     let access = await checkPassword(pin);
     if (access) {
-        remainingBalance = balance - amount;
-        console.log(chalk.green(`Withdraw successfull! Remaining Balance : ${remainingBalance}`));
-        userPrompt();
+        if (amount < remainingBalance) {
+            remainingBalance = balance - amount;
+            console.log(chalk.green(`Withdraw successfull! Remaining Balance : ${remainingBalance}`));
+            userPrompt();
+        }
+        else {
+            console.log(chalk.red(`Insufficient Balance! maximum withdraw amount:${remainingBalance}`));
+            userPrompt();
+        }
     }
     else {
         console.log("Wrong credintials, try again!");
