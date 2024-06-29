@@ -1,6 +1,6 @@
 {
   "name": "cli-atm-23426",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a simple cli atm program",
   "main": "index.js",
   "type": "module",
