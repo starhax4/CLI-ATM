@@ -71,7 +71,7 @@ async function withdraw(){
     let access = await checkPassword(pin)
     if(access){
 
-        if(amount<remainingBalance){
+        if(amount<=remainingBalance){
 
             remainingBalance = balance - amount
             console.log(chalk.green(`Withdraw successfull! Remaining Balance : ${remainingBalance}`));
