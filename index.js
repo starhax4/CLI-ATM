@@ -16,13 +16,18 @@ async function checkPassword(upin) {
     }
     else {
         console.log(chalk.red("wrong pin code!"));
-        let againPin = await login();
-        if (againPin == pin) {
-            return true;
+        const answer = await inquirer.prompt({ message: "choose an option", type: "list", choices: ["1.retry", "2.exit"], name: "option" });
+        if (answer.option == "1.retry") {
+            let againPin = await login();
+            if (againPin == pin) {
+                return true;
+            }
+            else {
+                let pin = await login();
+                await checkPassword(pin);
+            }
         }
         else {
-            let pin = await login();
-            await checkPassword(pin);
         }
     }
 }
@@ -53,7 +58,7 @@ async function withdraw() {
     let pin = await login();
     let access = await checkPassword(pin);
     if (access) {
-        if (amount < remainingBalance) {
+        if (amount <= remainingBalance) {
             remainingBalance = balance - amount;
             console.log(chalk.green(`Withdraw successfull! Remaining Balance : ${remainingBalance}`));
             userPrompt();
